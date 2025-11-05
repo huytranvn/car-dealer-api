@@ -1,0 +1,28 @@
+# Web Framework
+fastapi>=0.104.0,<1.0.0
+uvicorn[standard]>=0.24.0,<1.0.0
+
+# Database
+sqlalchemy>=2.0.0,<3.0.0
+alembic>=1.12.0,<2.0.0
+psycopg2-binary>=2.9.0,<3.0.0  # PostgreSQL adapter
+
+# Data Validation & Settings
+pydantic>=2.0.0,<3.0.0
+pydantic-settings>=2.0.0,<3.0.0
+pydantic[email]>=2.0.0,<3.0.0  # For EmailStr validation
+
+# Authentication & Security
+python-jose[cryptography]>=3.3.0,<4.0.0  # JWT token handling
+passlib[bcrypt]>=1.7.4,<2.0.0  # Password hashing
+
+# Testing
+pytest>=7.4.0,<8.0.0
+httpx>=0.25.0,<1.0.0  # Required for FastAPI TestClient
+
+# Source - https://stackoverflow.com/questions/70409614/passlib-exc-missingbackenderror-bcrypt-no-backends-available-recommend-you
+# Posted by Matteo Lancia
+# Retrieved 11/5/2025, License - CC-BY-SA 4.0
+
+cryptography==3.4.8
+bcrypt==3.2.2
