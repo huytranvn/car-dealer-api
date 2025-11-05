@@ -204,3 +204,4 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,osx
 db/versions/__pycache__/847c9b5ba231_create_cars_table.cpython-313.pyc
+test.db
