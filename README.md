@@ -71,15 +71,17 @@ alembic upgrade head
 
 ### 7. Seed the Database (Optional)
 
-Seed the database with an initial admin user:
+Seed the database with an initial admin user and 20 sample cars:
 
 ```bash
 python seed.py
 ```
 
-This creates an admin user with the following credentials:
-- **Email**: `admin@example.com`
-- **Password**: `admin@example.com`
+This creates:
+- **Admin user** with credentials:
+  - Email: `admin@example.com`
+  - Password: `admin@example.com`
+- **20 sample cars** with realistic data including various brands (Honda, Toyota, Tesla, BMW, etc.)
 
 ⚠️ **Important**: Change the admin password after first login in production!
 

@@ -1,4 +1,5 @@
 from typing import Optional
+from decimal import Decimal
 
 from pydantic import BaseModel
 
@@ -11,6 +12,13 @@ class CarCreate(BaseModel):
     fuel_type: str
     color: str
     year: int
+    price: Optional[Decimal] = None
+    registered_date: Optional[str] = None
+    registered_year: Optional[int] = None
+    mileage: Optional[int] = None
+    wheel_drive: Optional[str] = None
+    registration_number: Optional[str] = None
+    variant: Optional[str] = None
 
 
 class CarUpdate(BaseModel):
@@ -21,6 +29,13 @@ class CarUpdate(BaseModel):
     fuel_type: Optional[str] = None
     color: Optional[str] = None
     year: Optional[int] = None
+    price: Optional[Decimal] = None
+    registered_date: Optional[str] = None
+    registered_year: Optional[int] = None
+    mileage: Optional[int] = None
+    wheel_drive: Optional[str] = None
+    registration_number: Optional[str] = None
+    variant: Optional[str] = None
 
 
 class CarResponse(BaseModel):
@@ -32,6 +47,13 @@ class CarResponse(BaseModel):
     fuel_type: str
     color: str
     year: int
+    price: Optional[Decimal] = None
+    registered_date: Optional[str] = None
+    registered_year: Optional[int] = None
+    mileage: Optional[int] = None
+    wheel_drive: Optional[str] = None
+    registration_number: Optional[str] = None
+    variant: Optional[str] = None
 
     class Config:
         from_attributes = True

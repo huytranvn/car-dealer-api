@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Numeric
 
 from configs.database import Base
 
@@ -14,4 +14,11 @@ class Car(Base):
     fuel_type = Column(String, nullable=False)
     color = Column(String, nullable=False)
     year = Column(Integer, nullable=False)
+    price = Column(Numeric(10, 2), nullable=True)
+    registered_date = Column(String, nullable=True)
+    registered_year = Column(Integer, nullable=True)
+    mileage = Column(Integer, nullable=True)
+    wheel_drive = Column(String, nullable=True)
+    registration_number = Column(String, nullable=True, unique=True)
+    variant = Column(String, nullable=True)
 
