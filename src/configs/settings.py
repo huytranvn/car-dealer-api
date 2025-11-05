@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     DATABASE_URL: str = Field("postgresql://localhost/snorlax")
     SECRET_KEY: str = Field("your-secret-key-change-this-in-production", description="Secret key for JWT token signing")
+    CORS_ORIGINS: str = Field("*", description="Comma-separated list of allowed origins for CORS")
 
     model_config = SettingsConfigDict(
         env_file=".env",
