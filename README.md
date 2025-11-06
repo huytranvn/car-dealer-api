@@ -1,4 +1,4 @@
-# Satoshi Backend API
+# Car Dealership Backend API
 
 A RESTful API built with FastAPI for managing cars and user authentication.
 
