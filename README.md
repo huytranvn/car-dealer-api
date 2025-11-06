@@ -127,11 +127,53 @@ Once the server is running, you can access:
 - `POST /auth/login` - Login and receive JWT token
 
 ### Cars
-- `GET /cars` - List all cars
-- `POST /cars` - Create a new car
-- `PUT /cars/{car_id}` - Update an existing car
+- `GET /v1/cars` - List all cars (requires authentication)
+- `GET /v1/cars/public` - List all cars (public, no authentication required)
+  - Supports pagination: `?limit=20&offset=0`
+  - Supports filtering:
+    - `?max_price=50000` - Cars priced at or below specified amount
+    - `?year=2023` - Filter by car year
+    - `?wheel_drive=FWD` - Filter by wheel drive type (FWD, AWD, RWD, 4WD)
+  - Supports ordering: `?order_by=price` or `?order_by=price_desc` or `?order_by=registered_year` or `?order_by=registered_year_desc`
+- `POST /v1/cars` - Create a new car (requires authentication)
+- `PUT /v1/cars/{car_id}` - Update an existing car (requires authentication)
 
 For detailed API documentation, visit the Swagger UI at `/docs` after starting the server.
+
+## 🕷️ Web Scraping
+
+The application includes a web scraper for importing car data from Ayvens.
+
+### Run the Scraper
+
+```bash
+python scrape_cars.py
+```
+
+**Features:**
+- Scrapes Tesla cars from Ayvens used car website
+- Automatically saves cars to the database
+- Skips duplicate cars (checks registration number)
+- Shows progress and statistics
+
+**Output example:**
+```
+🚗 Found 15 cars to scrape...
+
+Processing car 1/15...
+  ✓ Created: Tesla Model 3 Long Range (ABC-123)
+
+Processing car 2/15...
+  ⊘ Skipped: Tesla Model Y (XYZ-456) - already exists
+
+==================================================
+Scraping Summary
+==================================================
+✓ Cars created: 10
+⊘ Cars skipped (already exist): 5
+Total processed: 15
+==================================================
+```
 
 ## 🧪 Running Tests
 
@@ -162,6 +204,10 @@ backend/
 │   ├── components/             # Feature modules
 │   │   ├── cars/              # Car management
 │   │   │   ├── endpoints/     # API endpoints
+│   │   │   │   ├── create.py       # Create car endpoint
+│   │   │   │   ├── list.py         # List cars (authenticated)
+│   │   │   │   ├── list_public.py  # List cars (public)
+│   │   │   │   └── update.py       # Update car endpoint
 │   │   │   ├── models.py      # Database models
 │   │   │   └── schemas.py     # Pydantic schemas
 │   │   └── users/             # User management & auth
@@ -171,11 +217,15 @@ backend/
 │   ├── configs/               # Configuration
 │   │   ├── database.py        # Database connection
 │   │   └── settings.py        # App settings
+│   ├── scrapers/              # Web scrapers
+│   │   └── ayvens.py         # Ayvens car scraper
 │   ├── utils/                 # Utility functions
 │   │   ├── auth.py           # Authentication utilities
 │   │   └── logger.py         # Logging setup
 │   └── main.py               # Application entry point
 ├── tests/                     # Test suite
+├── seed.py                   # Database seeding script
+├── scrape_cars.py            # Car scraper runner
 ├── alembic.ini               # Alembic configuration
 ├── requirements.txt          # Python dependencies
 └── pytest.ini               # Pytest configuration

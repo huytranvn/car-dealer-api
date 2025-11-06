@@ -384,6 +384,7 @@ def seed_cars(db: Session):
         # Check if registration number already exists
         existing = db.query(Car).filter(Car.registration_number == car_info["registration_number"]).first()
         if not existing:
+            car_info["source"] = "seed"  # Set source for seed data
             car = Car(**car_info)
             db.add(car)
             created_count += 1

@@ -19,6 +19,9 @@ class CarCreate(BaseModel):
     wheel_drive: Optional[str] = None
     registration_number: Optional[str] = None
     variant: Optional[str] = None
+    source: Optional[str] = None
+    external_link: Optional[str] = None
+    display_image_url: Optional[str] = None
 
 
 class CarUpdate(BaseModel):
@@ -36,6 +39,9 @@ class CarUpdate(BaseModel):
     wheel_drive: Optional[str] = None
     registration_number: Optional[str] = None
     variant: Optional[str] = None
+    source: Optional[str] = None
+    external_link: Optional[str] = None
+    display_image_url: Optional[str] = None
 
 
 class CarResponse(BaseModel):
@@ -54,6 +60,28 @@ class CarResponse(BaseModel):
     wheel_drive: Optional[str] = None
     registration_number: Optional[str] = None
     variant: Optional[str] = None
+    source: Optional[str] = None
+    external_link: Optional[str] = None
+    display_image_url: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class CarPublicResponse(BaseModel):
+    id: int
+    name: str
+    brand: str
+    model: str
+    make: str
+    fuel_type: str
+    color: str
+    price: Optional[Decimal] = None
+    registered_year: Optional[int] = None
+    mileage: Optional[int] = None
+    wheel_drive: Optional[str] = None
+    external_link: Optional[str] = None
+    display_image_url: Optional[str] = None
 
     class Config:
         from_attributes = True
@@ -65,3 +93,9 @@ class PaginatedResponse(BaseModel):
     limit: int
     offset: int
 
+
+class PaginatedPublicResponse(BaseModel):
+    items: list[CarPublicResponse]
+    total: int
+    limit: int
+    offset: int

@@ -21,4 +21,7 @@ class Car(Base):
     wheel_drive = Column(String, nullable=True)
     registration_number = Column(String, nullable=True, unique=True)
     variant = Column(String, nullable=True)
+    source = Column(String, nullable=True)
+    external_link = Column(String, nullable=True)
+    display_image_url = Column(String, nullable=True)
 

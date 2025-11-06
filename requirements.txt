@@ -26,3 +26,9 @@ httpx>=0.25.0,<1.0.0  # Required for FastAPI TestClient
 
 cryptography==3.4.8
 bcrypt==3.2.2
+
+# Scraping
+click==8.3.0
+python-dotenv==1.1.1
+playwright==1.55.0
+nest-asyncio==1.6.0

@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 from configs.database import Base, get_db
 from components.cars.endpoints.create import router as cars_create_router
 from components.cars.endpoints.list import router as cars_list_router
+from components.cars.endpoints.list_public import router as cars_list_public_router
 from components.cars.endpoints.update import router as cars_update_router
 from components.cars.models import Car
 from components.users.endpoints.auth import router as auth_router
@@ -32,6 +33,7 @@ def app():
     """Create FastAPI app for testing."""
     app = FastAPI()
     app.include_router(cars_list_router)
+    app.include_router(cars_list_public_router)
     app.include_router(cars_create_router)
     app.include_router(cars_update_router)
     app.include_router(auth_router)
@@ -68,6 +70,7 @@ def client(app, db_session):
 @pytest.fixture
 def sample_cars(db_session):
     """Create sample car data for testing."""
+    from decimal import Decimal
     cars = [
         Car(
             name=f"Car {i}",
@@ -77,6 +80,14 @@ def sample_cars(db_session):
             fuel_type="Gasoline",
             color="Red",
             year=2020 + i,
+            price=Decimal(str(20000 + (i * 1000))),  # Prices from 21000 to 40000
+            registered_year=2020 + i,
+            registered_date=f"2020-0{min(i, 9)}-15" if i < 10 else f"2021-0{i-9}-15",
+            mileage=5000 * i,
+            wheel_drive="FWD" if i % 2 == 0 else "AWD",
+            registration_number=f"ABC-{i:03d}",
+            variant=f"Variant {i}",
+            source="test",
         )
         for i in range(1, 21)  # Create 20 cars
     ]
@@ -142,6 +153,7 @@ def test_car(db_session):
         fuel_type="Gasoline",
         color="Red",
         year=2020,
+        source="test",
     )
     db_session.add(car)
     db_session.commit()

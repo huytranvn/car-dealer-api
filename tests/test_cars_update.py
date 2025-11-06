@@ -250,7 +250,10 @@ class TestCarsUpdateEndpoint:
         assert response.status_code == status.HTTP_200_OK
 
         # Verify update persisted by fetching the car
-        get_response = client.get(f"/v1/cars?limit=1")
+        get_response = client.get(
+            f"/v1/cars?limit=1",
+            headers={"Authorization": f"Bearer {auth_token}"}
+        )
         assert get_response.status_code == status.HTTP_200_OK
         cars = get_response.json()["items"]
         assert len(cars) == 1

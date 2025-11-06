@@ -36,7 +36,10 @@ class TestCarsCreateEndpoint:
         assert data["year"] == car_data["year"]
 
         # Verify car was actually created in database
-        get_response = client.get("/v1/cars?limit=1")
+        get_response = client.get(
+            "/v1/cars?limit=1",
+            headers={"Authorization": f"Bearer {auth_token}"}
+        )
         assert get_response.status_code == status.HTTP_200_OK
         cars = get_response.json()["items"]
         assert len(cars) == 1
@@ -226,7 +229,10 @@ class TestCarsCreateEndpoint:
         assert car1_id != car2_id
 
         # Verify both cars exist in the database
-        get_response = client.get("/v1/cars?limit=10")
+        get_response = client.get(
+            "/v1/cars?limit=10",
+            headers={"Authorization": f"Bearer {auth_token}"}
+        )
         assert get_response.status_code == status.HTTP_200_OK
         cars = get_response.json()["items"]
         car_ids = [car["id"] for car in cars]

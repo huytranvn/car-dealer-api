@@ -27,6 +27,16 @@ def create_car(
         fuel_type=car_data.fuel_type,
         color=car_data.color,
         year=car_data.year,
+        price=car_data.price,
+        registered_date=car_data.registered_date,
+        registered_year=car_data.registered_year,
+        mileage=car_data.mileage,
+        wheel_drive=car_data.wheel_drive,
+        registration_number=car_data.registration_number,
+        variant=car_data.variant,
+        source=car_data.source,
+        external_link=car_data.external_link,
+        display_image_url=car_data.display_image_url,
     )
     db.add(car)
     db.commit()
