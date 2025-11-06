@@ -19,7 +19,7 @@ A RESTful API built with FastAPI for managing cars and user authentication.
 
 ## 🛠️ Installation
 
-### 2. Create Virtual Environment
+### 1. Create Virtual Environment
 
 ```bash
 python -m venv venv
@@ -28,13 +28,13 @@ source venv/bin/activate  # On macOS/Linux
 venv\Scripts\activate  # On Windows
 ```
 
-### 3. Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Set Up Environment Variables
+### 3. Set Up Environment Variables
 
 Create a `.env` file in the root directory:
 
@@ -53,7 +53,7 @@ CORS_ORIGINS=*
 - Use `*` to allow all origins (development only)
 - Use comma-separated URLs for specific origins: `http://localhost:3000,https://example.com`
 
-### 5. Set Up PostgreSQL Database
+### 4. Set Up PostgreSQL Database
 
 ```bash
 # Create the database
@@ -63,13 +63,13 @@ createdb snorlax
 # CREATE DATABASE snorlax;
 ```
 
-### 6. Run Database Migrations
+### 5. Run Database Migrations
 
 ```bash
 alembic upgrade head
 ```
 
-### 7. Seed the Database (Optional)
+### 6. Seed the Database (Optional)
 
 Seed the database with an initial admin user and 20 sample cars:
 
@@ -302,15 +302,7 @@ Follow PEP 8 guidelines for Python code style.
 - Verify virtual environment is activated
 - Check Python path includes the `src` directory
 
-## 📝 License
-
-[Add your license here]
-
 ## 👥 Contributors
 
-[Add contributors here]
-
-## 📧 Contact
-
-[Add contact information here]
+Huy Tran - huytran.developer@gmail.com
 
